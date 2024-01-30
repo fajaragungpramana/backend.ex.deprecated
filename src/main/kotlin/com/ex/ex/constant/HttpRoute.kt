@@ -11,4 +11,8 @@ object HttpRoute {
     // END-POINT
     const val LOGIN = "/login"
 
+    val listPermitUrl = arrayOf(
+        V_1 + AUTHENTICATION + LOGIN
+    )
+
 }
