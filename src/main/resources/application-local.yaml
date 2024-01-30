@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ex
+    username: ex
+    password: ex2024
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    locations: classpath:db/migration
+  jpa:
+    properties:
+      hibernate:
+        order_by:
+          default_null_ordering: last
+
+server:
+  port:
+    - 8080
+  servlet:
+    context-path: /api
