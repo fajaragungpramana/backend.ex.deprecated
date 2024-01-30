@@ -5,6 +5,7 @@ import com.ex.ex.constant.HttpRoute
 import com.ex.ex.core.domain.authentication.AuthenticationUseCase
 import com.ex.ex.core.domain.authentication.request.LoginRequest
 import com.ex.ex.core.domain.authentication.response.LoginResponse
+import com.ex.ex.extension.isEmail
 import lombok.RequiredArgsConstructor
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -23,6 +24,12 @@ class AuthenticationController(private val mAuthenticationUseCase: Authenticatio
         val responseBody = ApplicationResponse<LoginResponse>()
         if (loginRequest.email.isNullOrEmpty()) {
             responseBody.message = "Request email is required."
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody)
+        }
+
+        if (!loginRequest.email.isEmail()) {
+            responseBody.message = "Request email is not valid."
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody)
         }
