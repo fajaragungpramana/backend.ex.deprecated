@@ -27,7 +27,8 @@ class SecurityConfiguration(private val mJwtAuthenticationFilter: JwtAuthenticat
             .authorizeHttpRequests { auth ->
                 auth
                     .requestMatchers(
-                        HttpRoute.V_1 + HttpRoute.AUTHENTICATION + HttpRoute.LOGIN
+                        HttpRoute.V_1 + HttpRoute.AUTHENTICATION + HttpRoute.LOGIN,
+                        HttpRoute.V_1 + HttpRoute.AUTHENTICATION + HttpRoute.REGISTER
                     ).permitAll()
                     .anyRequest().authenticated()
 
