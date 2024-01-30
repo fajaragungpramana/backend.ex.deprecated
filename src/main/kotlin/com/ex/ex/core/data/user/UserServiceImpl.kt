@@ -4,6 +4,7 @@ import com.ex.ex.core.data.user.entity.UserEntity
 import com.ex.ex.core.data.user.model.UserModel
 import com.ex.ex.core.exception.ForbiddenException
 import com.ex.ex.core.exception.NotFoundException
+import com.ex.ex.extension.bcryptMatches
 import lombok.RequiredArgsConstructor
 import org.springframework.stereotype.Service
 
@@ -17,6 +18,8 @@ class UserServiceImpl(private val mUserRepository: UserRepository) : UserService
         val userModel = UserModel()
 
         val userQuery = mUserRepository.findByEmail(userEntity.email) ?: throw NotFoundException("User with provided email not found.")
+        if (!userEntity.password.orEmpty().bcryptMatches(userQuery.password.orEmpty())) throw ForbiddenException("Invalid password.")
+
         when {
             userQuery.suspendedAt != null -> throw ForbiddenException("User is suspended.")
             userQuery.deletedAt != null -> throw ForbiddenException("User is deleted.")
