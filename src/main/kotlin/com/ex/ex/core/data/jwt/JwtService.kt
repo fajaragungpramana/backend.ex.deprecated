@@ -7,4 +7,6 @@ interface JwtService {
 
     fun setToken(jwtEntity: JwtEntity): JwtModel
 
+    fun getToken(token: String): JwtModel
+
 }
