@@ -17,3 +17,6 @@ server:
     - 8080
   servlet:
     context-path: /api
+
+security:
+  jwt-password: ${EX_JWT_PASSWORD}
