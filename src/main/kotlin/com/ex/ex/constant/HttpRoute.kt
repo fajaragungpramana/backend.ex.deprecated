@@ -11,8 +11,11 @@ object HttpRoute {
     // END-POINT
     const val LOGIN = "/login"
 
+    const val REGISTER = "/register"
+
     val listPermitUrl = arrayOf(
-        V_1 + AUTHENTICATION + LOGIN
+        V_1 + AUTHENTICATION + LOGIN,
+        V_1 + AUTHENTICATION + REGISTER
     )
 
 }

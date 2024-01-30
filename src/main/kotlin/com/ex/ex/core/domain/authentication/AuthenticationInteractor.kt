@@ -7,6 +7,7 @@ import com.ex.ex.core.data.jwt.model.JwtType
 import com.ex.ex.core.data.user.UserService
 import com.ex.ex.core.data.user.entity.UserEntity
 import com.ex.ex.core.domain.authentication.request.LoginRequest
+import com.ex.ex.core.domain.authentication.request.RegisterRequest
 import com.ex.ex.core.domain.authentication.response.LoginResponse
 import com.ex.ex.core.exception.ForbiddenException
 import com.ex.ex.core.exception.NotFoundException
@@ -27,6 +28,7 @@ class AuthenticationInteractor(private val mUserService: UserService, private va
             val userLogin = mUserService.login(UserEntity(email = loginRequest.email, password = loginRequest.password))
             val jwt = mJwtService.setToken(JwtEntity(userId = userLogin.id, jwtType = JwtType.ACCESS))
 
+            responseBody.message = "User login successfully."
             responseBody.data = LoginResponse(
                 accessToken = jwt.accessToken,
                 refreshToken = jwt.refreshToken
@@ -45,6 +47,34 @@ class AuthenticationInteractor(private val mUserService: UserService, private va
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(responseBody)
+    }
+
+    override fun onRegister(registerRequest: RegisterRequest): ResponseEntity<ApplicationResponse<Boolean>> {
+        val responseBody = ApplicationResponse<Boolean>()
+
+        try {
+            val userRegister = mUserService.register(UserEntity(
+                fullName = registerRequest.fullName,
+                email = registerRequest.email,
+                password = registerRequest.password,
+                createdAt = System.currentTimeMillis()
+            ))
+
+            responseBody.message = "User registration successfully."
+            responseBody.data = userRegister.id != null
+        } catch (e: Exception) {
+            responseBody.message = e.message
+
+            return ResponseEntity.status(
+                when (e) {
+                    is ForbiddenException -> HttpStatus.FORBIDDEN
+
+                    else -> HttpStatus.INTERNAL_SERVER_ERROR
+                }
+            ).body(responseBody)
+        }
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseBody)
     }
 
 }

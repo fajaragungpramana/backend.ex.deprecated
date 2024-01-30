@@ -7,4 +7,6 @@ interface UserService {
 
     fun login(userEntity: UserEntity): UserModel
 
+    fun register(userEntity: UserEntity): UserModel
+
 }
