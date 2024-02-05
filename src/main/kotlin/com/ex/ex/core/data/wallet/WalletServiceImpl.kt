@@ -34,7 +34,7 @@ class WalletServiceImpl(private val mWalletRepository: WalletRepository) : Walle
 
         val listWalletModel = arrayListOf<WalletModel>()
         listWallet.forEach {
-            listWalletModel.add(
+            if (it.deletedAt == null) listWalletModel.add(
                 WalletModel(
                     id = it.id,
                     name = it.name,

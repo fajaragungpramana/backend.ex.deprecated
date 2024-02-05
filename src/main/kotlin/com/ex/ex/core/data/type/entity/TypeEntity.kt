@@ -19,8 +19,8 @@ data class TypeEntity(
     @Column(name = "name")
     val name: String? = null,
 
-    @Column(name = "type")
-    val type: String? = null,
+    @Column(name = "category")
+    val category: String? = null,
 
     @Column(name = "created_at")
     val createdAt: Long? = null,

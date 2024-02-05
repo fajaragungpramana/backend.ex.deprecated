@@ -8,6 +8,7 @@ object HttpRoute {
     // ROOT
     const val AUTHENTICATION = "/authentication"
     const val USER = "/user"
+    const val TYPE = "/type"
 
     // END-POINT
     const val LOGIN = "/login"
