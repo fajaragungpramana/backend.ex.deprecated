@@ -43,16 +43,11 @@ class UserController(private val mUserUseCase: UserUseCase, private val mWalletU
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody)
         }
 
-        if (walletRequest.balance == null) {
-            responseBody.message = "Request balance is required."
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody)
-        }
-
         val authentication = SecurityContextHolder.getContext().authentication
 
         return mWalletUseCase.setWallet(WalletEntity(
             userId = authentication.name.toLong(),
-            balance = walletRequest.balance,
+            balance = 0,
             name = walletRequest.name,
             typeId = walletRequest.typeId,
             createdAt = System.currentTimeMillis()

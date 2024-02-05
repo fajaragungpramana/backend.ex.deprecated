@@ -8,9 +8,6 @@ data class WalletRequest(
     val name: String? = null,
 
     @JsonProperty("type_id")
-    val typeId: Long? = null,
-
-    @JsonProperty("balance")
-    val balance: Long? = null
+    val typeId: Long? = null
 
 )
