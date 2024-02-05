@@ -5,6 +5,15 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class WalletResponse(
 
     @JsonProperty("name")
-    val name: String? = null
+    val name: String? = null,
+
+    @JsonProperty("type")
+    val type: String? = null,
+
+    @JsonProperty("balance")
+    val balance: Long? = null,
+
+    @JsonProperty("created_at")
+    val createdAt: Long? = null
 
 )

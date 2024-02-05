@@ -59,4 +59,11 @@ class UserController(private val mUserUseCase: UserUseCase, private val mWalletU
         ))
     }
 
+    @GetMapping(HttpRoute.WALLET)
+    fun getListWallet(): ResponseEntity<ApplicationResponse<List<WalletResponse>>> {
+        val authentication = SecurityContextHolder.getContext().authentication
+
+        return mWalletUseCase.getListWallet(authentication.name.toLong())
+    }
+
 }

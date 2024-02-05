@@ -7,4 +7,6 @@ interface WalletService {
 
     fun setWallet(walletEntity: WalletEntity): WalletModel
 
+    fun getListWallet(userId: Long?): List<WalletModel>
+
 }
