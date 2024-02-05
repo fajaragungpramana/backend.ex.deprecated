@@ -1,4 +1,4 @@
-INSERT INTO types (name, type, created_at, updated_at, deleted_at) VALUES
+INSERT INTO types (name, category, created_at, updated_at, deleted_at) VALUES
 ('CREDIT', 'TRANSACTION', 1702650211628, NULL, NULL),
 ('DEBIT', 'TRANSACTION', 1702650211628, NULL, NULL),
 ('CREDIT', 'PAYMENT', 1702650211628, NULL, NULL),

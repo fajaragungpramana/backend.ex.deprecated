@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS types(
     id BIGSERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(30) NOT NULL,
-    type VARCHAR(30) NOT NULL,
+    category VARCHAR(30) NOT NULL,
     created_at BIGINT NOT NULL,
     updated_at BIGINT NULL,
     deleted_at BIGINT NULL
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS types(
 CREATE TABLE IF NOT EXISTS statuses(
     id BIGSERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(30) NOT NULL,
-    type VARCHAR(30) NOT NULL,
+    category VARCHAR(30) NOT NULL,
     created_at BIGINT NOT NULL,
     updated_at BIGINT NULL,
     deleted_at BIGINT NULL
