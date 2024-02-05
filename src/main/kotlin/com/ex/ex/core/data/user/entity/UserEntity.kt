@@ -16,6 +16,9 @@ data class UserEntity(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
 
+    @Column(name = "avatar")
+    val avatar: String? = null,
+
     @Column(name = "full_name")
     val fullName: String? = null,
 

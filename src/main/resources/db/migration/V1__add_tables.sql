@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS categories(
 
 CREATE TABLE IF NOT EXISTS users(
     id BIGSERIAL PRIMARY KEY NOT NULL,
+    avatar VARCHAR(255) NULL,
     full_name VARCHAR(50) NOT NULL,
     email VARCHAR(60) NOT NULL,
     email_verified_at BIGINT NULL,
