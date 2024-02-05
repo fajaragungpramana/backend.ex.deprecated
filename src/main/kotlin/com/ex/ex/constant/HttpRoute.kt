@@ -13,6 +13,7 @@ object HttpRoute {
     const val LOGIN = "/login"
     const val REGISTER = "/register"
     const val ME = "/me"
+    const val WALLET = "/wallet"
 
     val listPermitUrl = arrayOf(
         V_1 + AUTHENTICATION + LOGIN,
