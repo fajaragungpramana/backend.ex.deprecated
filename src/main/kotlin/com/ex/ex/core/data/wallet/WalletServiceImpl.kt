@@ -29,10 +29,11 @@ class WalletServiceImpl(private val mWalletRepository: WalletRepository) : Walle
     override fun getListWallet(userId: Long?): List<WalletModel> {
         if (userId == null) throw NullPointerException("User id is required.")
 
-        val listWallet = mWalletRepository.findByUserIdOrderByUpdatedAtDesc(userId)
-        if (listWallet.isNullOrEmpty()) throw NotFoundException("User is not have wallets.")
-
         val listWalletModel = arrayListOf<WalletModel>()
+
+        val listWallet = mWalletRepository.findByUserIdOrderByUpdatedAtDesc(userId)
+        if (listWallet.isNullOrEmpty()) return listWalletModel
+
         listWallet.forEach {
             if (it.deletedAt == null) listWalletModel.add(
                 WalletModel(
