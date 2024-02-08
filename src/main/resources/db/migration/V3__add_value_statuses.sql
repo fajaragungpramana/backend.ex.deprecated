@@ -1,4 +1,4 @@
-INSERT INTO statuses (name, type, created_at, updated_at, deleted_at) VALUES
+INSERT INTO statuses (name, category, created_at, updated_at, deleted_at) VALUES
 ('SUCCESS', 'TRANSACTION', 1702650211628, NULL, NULL),
 ('PENDING', 'TRANSACTION', 1702650211628, NULL, NULL),
 ('FAILURE', 'TRANSACTION', 1702650211628, NULL, NULL),
