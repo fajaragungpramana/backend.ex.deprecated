@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS payments(
     transaction_id BIGSERIAL NOT NULL,
     amount BIGINT NOT NULL,
     status_id BIGSERIAL NOT NULL,
+    type_id BIGSERIAL NOT NULL,
     wallet_id BIGSERIAL NOT NULL,
     created_at BIGINT NOT NULL,
     updated_at BIGINT NULL,

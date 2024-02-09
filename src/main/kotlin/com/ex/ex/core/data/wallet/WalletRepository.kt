@@ -7,4 +7,6 @@ interface WalletRepository : JpaRepository<WalletEntity, Long> {
 
     fun findByUserIdOrderByUpdatedAtDesc(userId: Long): List<WalletEntity>?
 
+    fun findByIdAndUserIdAndDeletedAt(id: Long, userId: Long, deletedAt: Long?): WalletEntity?
+
 }

@@ -9,10 +9,12 @@ import com.ex.ex.core.domain.wallet.WalletUseCase
 import com.ex.ex.core.domain.wallet.request.WalletRequest
 import com.ex.ex.core.domain.wallet.response.WalletResponse
 import lombok.RequiredArgsConstructor
+import org.apache.coyote.Response
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -45,13 +47,15 @@ class UserController(private val mUserUseCase: UserUseCase, private val mWalletU
 
         val authentication = SecurityContextHolder.getContext().authentication
 
-        return mWalletUseCase.setWallet(WalletEntity(
-            userId = authentication.name.toLong(),
-            balance = 0,
-            name = walletRequest.name,
-            typeId = walletRequest.typeId,
-            createdAt = System.currentTimeMillis()
-        ))
+        return mWalletUseCase.setWallet(
+            WalletEntity(
+                userId = authentication.name.toLong(),
+                balance = 0,
+                name = walletRequest.name,
+                typeId = walletRequest.typeId,
+                createdAt = System.currentTimeMillis()
+            )
+        )
     }
 
     @GetMapping(HttpRoute.WALLET)
@@ -59,6 +63,25 @@ class UserController(private val mUserUseCase: UserUseCase, private val mWalletU
         val authentication = SecurityContextHolder.getContext().authentication
 
         return mWalletUseCase.getListWallet(authentication.name.toLong())
+    }
+
+    @GetMapping(HttpRoute.WALLET + "/{id}")
+    fun getWallet(@PathVariable id: String?): ResponseEntity<ApplicationResponse<WalletResponse>> {
+        val responseBody = ApplicationResponse<WalletResponse>()
+        if (id.isNullOrEmpty()) {
+            responseBody.message = "Path variable id is required."
+
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseBody)
+        }
+
+        val authentication = SecurityContextHolder.getContext().authentication
+
+        return mWalletUseCase.getWallet(
+            WalletEntity(
+                id = id.toLong(),
+                userId = authentication.name.toLong()
+            )
+        )
     }
 
 }
