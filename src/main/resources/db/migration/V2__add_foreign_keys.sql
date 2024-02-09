@@ -29,6 +29,16 @@ FOREIGN KEY (transaction_id)
 REFERENCES transactions(id);
 
 ALTER TABLE payments
+ADD CONSTRAINT fk_type_id
+FOREIGN KEY (type_id)
+REFERENCES types(id);
+
+ALTER TABLE payments
+ADD CONSTRAINT fk_status_id
+FOREIGN KEY (status_id)
+REFERENCES statuses(id);
+
+ALTER TABLE payments
 ADD CONSTRAINT fk_wallet_id
 FOREIGN KEY (wallet_id)
 REFERENCES wallets(id);
