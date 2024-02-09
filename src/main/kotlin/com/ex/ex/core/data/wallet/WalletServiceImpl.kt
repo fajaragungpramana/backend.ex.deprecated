@@ -49,4 +49,27 @@ class WalletServiceImpl(private val mWalletRepository: WalletRepository) : Walle
         return listWalletModel
     }
 
+    override fun getWallet(walletEntity: WalletEntity): WalletModel {
+        val id = walletEntity.id
+        val userId = walletEntity.userId
+        if (id == null && userId == null) throw NullPointerException("Wallet id is required.")
+
+        val walletModel = WalletModel()
+
+        val wallet = mWalletRepository.findByIdAndUserIdAndDeletedAt(id ?: 0, userId ?: 0, null)
+        if (wallet == null) throw NotFoundException("Wallet with provided id not found.")
+
+        if (wallet.deletedAt != null) throw NotFoundException("Wallet with provided id not found.")
+
+        walletModel.let {
+            it.id = wallet.id
+            it.name = wallet.name
+            it.type = WalletType.find(wallet.typeId)
+            it.balance = wallet.balance
+            it.createdAt = wallet.createdAt
+        }
+
+        return walletModel
+    }
+
 }

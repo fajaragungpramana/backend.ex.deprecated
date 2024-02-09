@@ -9,4 +9,6 @@ interface WalletService {
 
     fun getListWallet(userId: Long?): List<WalletModel>
 
+    fun getWallet(walletEntity: WalletEntity): WalletModel
+
 }
