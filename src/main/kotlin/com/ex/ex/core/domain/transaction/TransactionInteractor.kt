@@ -41,7 +41,7 @@ class TransactionInteractor(
             responseBody.message = "Transaction found."
 
             val listPayment =
-                mPaymentService.getListPaymentByWalletId(PaymentEntity(walletId = walletId), page, size)
+                mPaymentService.getListPaymentByWalletId(PaymentEntity(walletId = walletId), page - 1, size)
             if (listPayment.isNotEmpty()) {
                 val listTransactionEntity = arrayListOf<Long>()
                 listPayment.forEach {

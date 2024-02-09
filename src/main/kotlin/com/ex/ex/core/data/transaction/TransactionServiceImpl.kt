@@ -18,7 +18,7 @@ class TransactionServiceImpl(private val mTransactionRepository: TransactionRepo
         if (listTransactionId.isEmpty()) throw NullPointerException("List transaction is required.")
 
         val listTransactionModel = arrayListOf<TransactionModel>()
-        val listTransaction = mTransactionRepository.findByIdInAndDeletedAt(listTransactionId, null)
+        val listTransaction = mTransactionRepository.findByIdInAndDeletedAtOrderByCreatedAtDesc(listTransactionId, null)
         listTransaction?.forEach {
             if (it.deletedAt == null)
                 listTransactionModel.add(

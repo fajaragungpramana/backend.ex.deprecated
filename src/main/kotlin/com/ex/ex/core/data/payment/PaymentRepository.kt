@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface PaymentRepository : JpaRepository<PaymentEntity, Long> {
 
-    fun findByWalletIdAndDeletedAtOrderByUpdatedAtDesc(
+    fun findByWalletIdAndDeletedAtOrderByCreatedAtDesc(
         walletId: Long,
         deletedAt: Long?,
         pageable: Pageable

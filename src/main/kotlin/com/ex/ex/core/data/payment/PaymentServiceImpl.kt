@@ -17,7 +17,7 @@ class PaymentServiceImpl(private val mPaymentRepository: PaymentRepository) : Pa
 
         val listPaymentModel = arrayListOf<PaymentModel>()
 
-        val listPayment = mPaymentRepository.findByWalletIdAndDeletedAtOrderByUpdatedAtDesc(
+        val listPayment = mPaymentRepository.findByWalletIdAndDeletedAtOrderByCreatedAtDesc(
             paymentEntity.walletId,
             null,
             PageRequest.of(page, size)
