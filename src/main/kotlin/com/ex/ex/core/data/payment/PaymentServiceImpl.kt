@@ -40,4 +40,20 @@ class PaymentServiceImpl(private val mPaymentRepository: PaymentRepository) : Pa
         return listPaymentModel
     }
 
+    override fun setPayment(paymentEntity: PaymentEntity): PaymentModel {
+        val paymentModel = PaymentModel()
+
+        val payment = mPaymentRepository.save(paymentEntity)
+        paymentModel.let {
+            it.id = payment.id
+            it.transactionId = payment.transactionId
+            it.amount = payment.amount
+            it.status = PaymentStatus.find(payment.statusId)
+            it.type = PaymentType.find(payment.typeId)
+            it.createdAt = it.createdAt
+        }
+
+        return paymentModel
+    }
+
 }

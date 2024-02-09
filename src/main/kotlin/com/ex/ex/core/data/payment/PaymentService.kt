@@ -7,4 +7,6 @@ interface PaymentService {
 
     fun getListPaymentByWalletId(paymentEntity: PaymentEntity, page: Int, size: Int) : List<PaymentModel>
 
+    fun setPayment(paymentEntity: PaymentEntity): PaymentModel
+
 }

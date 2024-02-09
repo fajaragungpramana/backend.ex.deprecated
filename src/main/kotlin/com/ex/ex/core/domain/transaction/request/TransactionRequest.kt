@@ -4,10 +4,19 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 data class TransactionRequest(
 
-    @JsonProperty("page")
-    val page: Int = 1,
+    @JsonProperty("name")
+    val name: String? = null,
 
-    @JsonProperty("limit")
-    val limit: Int = 15
+    @JsonProperty("description")
+    val description: String? = null,
+
+    @JsonProperty("wallet_id")
+    val walletId: Long? = null,
+
+    @JsonProperty("amount")
+    val amount: Long? = null,
+
+    @JsonProperty("category_id")
+    val categoryId: Long? = null
 
 )
