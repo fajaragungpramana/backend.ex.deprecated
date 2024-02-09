@@ -11,4 +11,6 @@ interface WalletUseCase {
 
     fun getListWallet(userId: Long?): ResponseEntity<ApplicationResponse<List<WalletResponse>>>
 
+    fun getWallet(walletEntity: WalletEntity): ResponseEntity<ApplicationResponse<WalletResponse>>
+
 }
