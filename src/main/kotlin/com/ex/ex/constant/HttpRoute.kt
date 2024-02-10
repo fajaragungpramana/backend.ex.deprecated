@@ -10,6 +10,7 @@ object HttpRoute {
     const val USER = "/user"
     const val TYPE = "/type"
     const val TRANSACTION = "/transaction"
+    const val CATEGORY = "/category"
 
     // END-POINT
     const val LOGIN = "/login"
@@ -17,6 +18,7 @@ object HttpRoute {
     const val ME = "/me"
     const val WALLET = "/wallet"
     const val CREATE = "/create"
+    const val LIST = "/list"
 
     val listPermitUrl = arrayOf(
         V_1 + AUTHENTICATION + LOGIN,

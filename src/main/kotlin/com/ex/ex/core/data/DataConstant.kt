@@ -7,5 +7,6 @@ object DataConstant {
     const val TABLE_NAME_WALLETS = "wallets"
     const val TABLE_NAME_PAYMENTS = "payments"
     const val TABLE_NAME_TRANSACTIONS = "transactions"
+    const val TABLE_NAME_CATEGORIES = "categories"
 
 }
