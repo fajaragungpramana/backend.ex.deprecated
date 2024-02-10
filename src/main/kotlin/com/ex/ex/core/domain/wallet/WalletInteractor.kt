@@ -53,6 +53,7 @@ class WalletInteractor(
             listWalletModel.forEach {
                 listWalletResponse.add(
                     WalletResponse(
+                        id = it.id,
                         name = it.name,
                         type = it.type?.name,
                         balance = it.balance,
